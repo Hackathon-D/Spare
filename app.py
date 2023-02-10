@@ -210,16 +210,16 @@ def add_message():
     #username = dbConnect.getUsername(user_id) 
     #print(username)
 
-#定型文↓
-    teikei = request.form.get('teikei')
-    #channel_id = request.form.get('channel_id')
+# #定型文↓
+#     teikei = request.form.get('teikei')
+#     #channel_id = request.form.get('channel_id')
 
-    if teikei:
-        dbConnect.createTeikeibun(uid, channel_id, teikei)
+#     if teikei:
+#         dbConnect.createTeikeibun(uid, channel_id, teikei)
 
-    #channel = dbConnect.getChannelById(channel_id)
-    teikeibun = dbConnect.getTeikeibunAll(channel_id)
-#定型文↑
+#     #channel = dbConnect.getChannelById(channel_id)
+#     teikeibun = dbConnect.getTeikeibunAll(channel_id)
+# #定型文↑
 
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid, time=time)#,zikan=zikan, username=username, teikeibun=teikeibun)

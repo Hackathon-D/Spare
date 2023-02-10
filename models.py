@@ -261,19 +261,19 @@ class dbConnect:
             cur.close()
 
 
-    def getTeikeibunAll(cid):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM teikeibun AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
-            cur.execute(sql, (cid))
-            teikeibun = cur.fetchall()
-            return teikeibun
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
+    # def getTeikeibunAll(cid):
+    #     try:
+    #         conn = DB.getConnection()
+    #         cur = conn.cursor()
+    #         sql = "SELECT id,u.uid, user_name, message FROM teikeibun AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
+    #         cur.execute(sql, (cid))
+    #         teikeibun = cur.fetchall()
+    #         return teikeibun
+    #     except Exception as e:
+    #         print(e + 'が発生しています')
+    #         return None
+    #     finally:
+    #         cur.close()
 
 
     def createTeikeibun(uid, cid, message):

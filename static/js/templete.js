@@ -1,5 +1,5 @@
 //textareaを定義
-const chatarea = document.getElementById('chatarea');
+const chatarea = document.getElementById('message');
 //感謝buttonのidを指定
 const thank = document.getElementById('templete1');
 //怒りbuttonのidを指定
@@ -40,5 +40,3 @@ window.onclick = function(event) {
         modal.style.display = 'none';
     }
 };
-
-//DBにpostする流れを作る。
