@@ -203,26 +203,26 @@ def add_message():
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
 
-    #zikan = dbConnect.getTimeMessage(channel_id)
+    time = dbConnect.getTimeMessage(channel_id)
 
-    time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print("OKうえーい"+str(time))
     #username = dbConnect.getUsername(user_id) 
     #print(username)
 
 # #定型文↓
-#     teikei = request.form.get('teikei')
-#     #channel_id = request.form.get('channel_id')
+#     teikei = request.form.get('register')
+#     channel_id = request.form.get('channel_id')
 
 #     if teikei:
 #         dbConnect.createTeikeibun(uid, channel_id, teikei)
 
-#     #channel = dbConnect.getChannelById(channel_id)
-#     teikeibun = dbConnect.getTeikeibunAll(channel_id)
+#     channel = dbConnect.getChannelById(channel_id)
+#     register = dbConnect.getTeikeibunAll(channel_id)
 # #定型文↑
 
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, time=time)#,zikan=zikan, username=username, teikeibun=teikeibun)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, time=time)#,zikan=zikan, username=username, register=register)
 
 
 @app.route('/delete_message', methods=['POST'])

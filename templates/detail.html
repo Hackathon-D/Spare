@@ -37,6 +37,9 @@
                   </button>
                 </form>
               </div>
+              <div class="仮-time">
+              <p>{{ message.created_at }}</p>
+              </div>
             {% else %}
               <div class="messages">
                 <p class="user-name">{{ message.user_name }}</p>
@@ -80,8 +83,8 @@
                     </ul>
                 </div>
                 <div class="modal-body">
-                    <form class='registerform' name="registerform" method="post">
-                        <input type="text" name="register" required>
+                    <form class='registerform' id="tourokuform" name="registerform" method="post">
+                        <input type="text" id="inputto" name="register" required>
                         <button id="submit-templete">登録</button>
                     </form>
                     </div>
