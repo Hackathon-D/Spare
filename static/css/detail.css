@@ -186,6 +186,12 @@
   left: 20px;
 }
 
+.time-show {
+  display: flex;
+  justify-content: right;
+  margin-right: 53px;
+}
+
 @media screen and (max-width: 550px) {
   #chatroom-description {
     display: none;

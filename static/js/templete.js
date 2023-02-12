@@ -7,7 +7,7 @@ const angry = document.getElementById('templete2');
 
 //buttonを押すとtextareaに代入
 thank.addEventListener('click', () => {
-    chatarea.value = 'ありがとうございます！';
+    chatarea.value = 'お世話になっております、よろしくお願いいたします。';
     modal.style.display = 'none';
 }
 )

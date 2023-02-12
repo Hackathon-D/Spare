@@ -13,7 +13,7 @@ import werkzeug
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-UPLOAD_FOLDER = '/root/hakkason/htn/static/img/'
+UPLOAD_FOLDER = '/Users/hiroki/Desktop/hackathon/hackathon-sample-replaced/Spare/static/img'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
@@ -24,6 +24,10 @@ app.permanent_session_lifetime = timedelta(days=30)
 
 #app.config['MAX_CONTENT_LENGTH'] = 70 * 1024 * 1024
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+@app.route('/todo') 
+def todo():
+    return render_template('/todo.html')
 
 @app.route('/signup')
 def signup():
@@ -99,9 +103,6 @@ def logout():
     session.clear()
     return redirect('/login')
 
-@app.route('/setting', methods=['GET', 'POST'])
-def setting():
-    return render_template('/setting.html')
 
 @app.route('/templete', methods=['GET', 'POST'])
 def templete():
@@ -139,8 +140,6 @@ def add_channel():
         return render_template('error/error.html', error_message=error)
 
 
-
-
 @app.route('/update_channel', methods=['POST'])
 def update_channel():
     uid = session.get("uid")
@@ -173,7 +172,8 @@ def delete_channel(cid):
             return render_template('index.html', channels=channels, uid=uid)
 
 
-# uidもmessageと一緒に返す
+#message打つURLはここ！
+
 @app.route('/detail/<cid>')
 def detail(cid):
     uid = session.get("uid")
@@ -182,8 +182,16 @@ def detail(cid):
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
+#    uname = dbConnect.getUsername(uid)
+    print(uid)
+#    print(uname)  
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    # dbConnect.createKidokulist(uid)
+
+#    kidoku = dbConnect.getKidokulist()
+#    print(kidoku)
+
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid)#, uname=uname)
 
 
 #大改造
@@ -203,26 +211,42 @@ def add_message():
     channel = dbConnect.getChannelById(channel_id)
     messages = dbConnect.getMessageAll(channel_id)
 
-    time = dbConnect.getTimeMessage(channel_id)
+    tim = dbConnect.getTimeMessage(channel_id)
 
-    # time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print("OKうえーい"+str(time))
-    #username = dbConnect.getUsername(user_id) 
+    #time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("OKうえーい"+str(tim))
+    uname = dbConnect.getUsername(uid) 
     #print(username)
 
-# #定型文↓
-#     teikei = request.form.get('register')
-#     channel_id = request.form.get('channel_id')
-
-#     if teikei:
-#         dbConnect.createTeikeibun(uid, channel_id, teikei)
-
-#     channel = dbConnect.getChannelById(channel_id)
-#     register = dbConnect.getTeikeibunAll(channel_id)
-# #定型文↑
 
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, time=time)#,zikan=zikan, username=username, register=register)
+    return render_template('detail.html', messages=messages, channel=channel, uid=uid, tim=tim, uname=uname)
+
+
+
+@app.route('/teikei', methods=['POST'])
+def add_teikei():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+
+#    message_teikei = request.form.get('message')
+    cid_teikei = request.form.get('cid')
+    print(cid_teikei)
+
+#    teikei = request.form.get('register')
+
+#    if teikei:
+#        dbConnect.createTeikeibun(uid, cid, teikei)
+
+#    channel = dbConnect.getChannelById(channel_id)
+#    messages = dbConnect.getMessageAll(channel_id)
+
+#    teikei = dbConnect.getTeikeibun(uid)
+
+    return render_template('detail.html')#, channel=channel), teikei=teikei) uid=uid,messages=messages)
+
+
 
 
 @app.route('/delete_message', methods=['POST'])
@@ -241,9 +265,24 @@ def delete_message():
 
     return render_template('detail.html', messages=messages, channel=channel, uid=uid)
 
-'''
+
+
+
+
+@app.route('/setting')
+def setting():
+
+    imgPath={'path': 'ここに画像パス表示'}
+
+    return render_template('/setting.html',imgPath=imgPath)
+
+
 @app.route('/setting', methods=['POST'])
-def up_img():
+def setting_img():
+#    if request.method == "GET":
+#        return "This is a GET request."
+#    elif request.method == "POST":
+
     uid = session.get("uid")
     if uid is None:
         return redirect('/setting')
@@ -256,16 +295,18 @@ def up_img():
         print(filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        print(UPLOAD_FOLDER)
+        print("bbbbbbb")
 
-        path = "/root/hakkason/htn/static/img/"+ filename 
+        path = UPLOAD_FOLDER + filename 
 
         print(path)
         dbConnect.createImag(uid,path)
 
-    imagPass = dbConnect.getImag(path)
-    return render_template('setting.html',imagPass=imgPass)
-'''
+        imgPath = dbConnect.getImag(path)
+        print(imgPath)
+    return render_template('setting.html',imgPath=imgPath)
+
+
 
 
 

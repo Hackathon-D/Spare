@@ -8,6 +8,7 @@
     <form method="post" enctype="multipart/form-data">
     <input type="file" id="image_select" name="image">
     <input type="submit" id="upload_image" value="Upload">
+    <p>{{ imgPath.path }}</p>
     </form>
     <h3>index.htmlに戻る</h3>
     <a href="{{ url_for('index') }}">index.html</a>

@@ -148,7 +148,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message, created_at FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
+            sql = "SELECT id,u.uid, user_name, message,created_at FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
             cur.execute(sql, (cid))
             messages = cur.fetchall()
             return messages
@@ -192,7 +192,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM sitagaki AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
+            sql = "SELECT id,u.uid, user_name, message, created_at FROM sitagaki AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
             cur.execute(sql, (cid))
             sitagaki = cur.fetchall()
             return sitagaki
@@ -240,18 +240,66 @@ class dbConnect:
             conn.commit()
             time = cur.fetchall()
             return time
-
         except Exception as e:
             print(e + 'が発生しています')
             return None
         finally:
             cur.close()
 
+
+
+
     def getUsername(uid):
+
+        try:
+
+            conn = DB.getConnection()
+
+            cur = conn.cursor()
+
+            sql = "SELECT * FROM users WHERE uid=%s;"
+
+            cur.execute(sql, (uid))
+
+            conn.commit()
+
+            uname = cur.fetchall()
+
+            return uname
+
+        except Exception as e:
+
+            print(e + 'が発生しています')
+
+            return None
+
+        finally:
+
+            cur.close()
+
+
+
+    def gerKidokulist():
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM users WHERE user_name=%s;"
+            sql = "SELECT * FROM kidoku;"
+            cur.execute(sql)
+            conn.commit()
+            kidoku = cur.fetchall()
+            return kidoku 
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+    def createKidokulist(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO kidoku(uid) VALUES(%s)"
             cur.execute(sql, (uid))
             conn.commit()
         except Exception as e:
@@ -261,19 +309,6 @@ class dbConnect:
             cur.close()
 
 
-    def getTeikeibunAll(uid, channel_id, register):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM teikeibun AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
-            cur.execute(sql, (uid, channel_id, register))
-            teikeibun = cur.fetchall()
-            return teikeibun
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
 
 
     def createTeikeibun(uid, cid, message):
@@ -283,6 +318,21 @@ class dbConnect:
             sql = "INSERT INTO teikeibun(uid, cid, message) VALUES(%s, %s, %s)"
             cur.execute(sql, (uid, cid, message))
             conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()
+
+
+    def getTeikeibun(uid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT message FROM teikeibun WHERE uid=%s;"
+            cur.execute(sql, (uid))
+            teikeibun = cur.fetchone()
+            return teikeibun
         except Exception as e:
             print(e + 'が発生しています')
             return None
@@ -303,11 +353,14 @@ class dbConnect:
         finally:
             cur.close()
 
+
+
+
     def createImag(uid, path):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO imag(uid, pass) VALUES(%s, %s)"
+            sql = "INSERT INTO imag(uid, path) VALUES(%s, %s)"
             cur.execute(sql, (uid, path))
             conn.commit()
         except Exception as e:
@@ -321,9 +374,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM imag WHERE pass = %s;"
+            sql = "SELECT path FROM imag WHERE path = %s;"
             cur.execute(sql, (path))
-            imags = cur.fetchall()
+            imags = cur.fetchone()
             return imags 
         except Exception as e:
             print(e + 'が発生しています')
@@ -333,12 +386,12 @@ class dbConnect:
 
 
 
-    def deleteImag(imag_id):
+    def deleteImag(id):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "DELETE FROM imag WHERE id=%s;"
-            cur.execute(sql, (imag_id))
+            cur.execute(sql, (id))
             conn.commit()
         except Exception as e:
             print(e + 'が発生しています')
@@ -347,19 +400,6 @@ class dbConnect:
             cur.close()
 
 
-
-    def createTeikeibun(uid, cid, message):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "INSERT INTO teikeibun(uid, cid, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (uid, cid, message))
-            conn.commit()
-        except Exception as e:
-            print(e + 'が発生しています')
-            return None
-        finally:
-            cur.close()
 
 
 
