@@ -1,13 +1,14 @@
-<!-- {% extends 'base.html' %} -->
+{% extends 'base.html' %}
 {% block title %}
   <title>Setting</title>
 {% endblock %}
 {% block body %}
 <link rel="stylesheet" href="/static/css/todo.css">
 <div class="todo-wrapper">
+<form action="/todo" method="post">
         <div id="todo-input">
-            <label>タスク名: <input id ="todo"></label>
-            <label >期日: <input type="date"></label><br>
+            <label>タスク名: <textarea name="tkna" autofocus required></textarea></label>
+            <label >期日: <input type="date" required></label><br>
             <fieldset>
             <p>優先度:</p>
                 <input id="item-1" class="radio-inline__input" type="radio" name="level" value="低"/>
@@ -24,6 +25,9 @@
                 </label>
             </fieldset>
             <button id="submit">登録</button>
+</form>
+<p>{{ todolist }}</p>
+
         </div>
         <hr>
         <div class="todo_filter">
@@ -44,7 +48,7 @@
         </table>
     </form>
 </div>
-    <script src="{{url_for('static',filename='js/todo.js')}}"
+    <!-- <script src="{{url_for('static',filename='js/todo.js')}}"
     type="text/javascript"
-  ></script>
-    <!-- {% endblock %} -->
+  ></script> -->
+    {% endblock %}

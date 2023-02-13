@@ -2,7 +2,7 @@
 let num =0;
 //各要素のエレメントを取得
 const table = document.querySelector('table'); //表
-const todo = document.getElementById('todo'); //todo
+const todo = document.getElementsByName('tkna'); //todo
 const priority = document.getElementsByName('level'); //優先度
 const deadline = document.querySelector('input[type="date"]'); //期日
 const submit = document.getElementById('submit'); //登録ボタン

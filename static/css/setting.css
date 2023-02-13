@@ -1,0 +1,46 @@
+.setting_wrapper {
+    margin: 60px 80px 60px 80px;
+}
+
+.change_profile {
+    margin: 20px 0px 20px 0px;
+    width: 412px;
+}
+
+.change_info_wrapper {
+    margin-bottom: 50px;
+}
+
+.change_profile input{
+    width: 400px;
+    height: 40px;
+}
+
+#change_username, #change_email, #change_password {
+    margin-bottom: 20px;
+}
+
+.material-icons.large-size {
+    font-size: 200px;
+}
+
+.icon_name {
+    width: 200px;
+    text-align: center;
+}
+
+#change {
+    border: 1px solid white;
+    display: flex;
+    justify-self: right;
+    margin-top: 3px; 
+    padding: 5px 25px 5px 25px;
+    border-radius: 10px;
+}
+
+#username_input, #email_input, #password_input {
+    border: 1px solid white;
+    background-color: #6B728E;
+    color: white;
+    padding-left: 10px;
+}
