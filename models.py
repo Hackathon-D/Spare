@@ -443,3 +443,31 @@ class dbConnect:
             return None
         finally:
             cur.close()
+
+
+    def updateUserName(user_name, uid):
+        conn = DB.getConnection()
+        cur = conn.cursor()
+        sql = "UPDATE users SET user_name=%s WHERE uid=%s;"
+        cur.execute(sql, (user_name, uid))
+        conn.commit()
+        cur.close()
+
+
+
+    def updateUserEmail(email, uid):
+        conn = DB.getConnection()
+        cur = conn.cursor()
+        sql = "UPDATE users SET email=%s WHERE uid=%s;"
+        cur.execute(sql, (email, uid))
+        conn.commit()
+        cur.close()
+
+
+    def updatePassword(password, uid):
+        conn = DB.getConnection()
+        cur = conn.cursor()
+        sql = "UPDATE users SET password=%s WHERE uid=%s;"
+        cur.execute(sql, (password, uid))
+        conn.commit()
+        cur.close()

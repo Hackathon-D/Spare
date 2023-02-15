@@ -13,7 +13,7 @@ import werkzeug
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-UPLOAD_FOLDER = './Spare/static/img'
+UPLOAD_FOLDER = '/root/hakkason/Spare/static/img'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
@@ -355,6 +355,77 @@ def setting_img():
     return render_template('setting.html',imgPath=imgPath)
 
 
+@app.route('/henkouN', methods=['POST'])
+def setting_henkouN():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/setting')
+    uname = request.form.get("uname")
+    #ema = request.form.get("ema")
+    #passwo = request.form.get("passw")
+
+    imgPath={'path': 'ここに画像パス表示'}
+
+    print(uname)
+
+    print("bbbbbbb")
+
+
+    print(uid)
+    dbConnect. updateUserName(uname, uid)
+
+#    imgPath = dbConnect.getImag(path)
+#    print(imgPath)
+    return render_template('setting.html', imgPath=imgPath)
+
+
+
+@app.route('/henkouE', methods=['POST'])
+def setting_henkouE():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/setting')
+    #uname = request.form.get("uname")
+    ema = request.form.get("ema")
+    #passwo = request.form.get("passw")
+
+    imgPath={'path': 'ここに画像パス表示'}
+
+    print(ema)
+
+    print("bbbbbbb")
+
+
+    print(uid)
+    dbConnect. updateUserEmail(ema, uid)
+
+#    imgPath = dbConnect.getImag(path)
+#    print(imgPath)
+    return render_template('setting.html', imgPath=imgPath)
+
+
+@app.route('/henkouP', methods=['POST'])
+def setting_henkouP():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/setting')
+    #uname = request.form.get("uname")
+    #ema = request.form.get("ema")
+    passwo = request.form.get("passw")
+
+    imgPath={'path': 'ここに画像パス表示'}
+
+    print(passwo)
+
+    print("bbbbbbb")
+
+
+    print(uid)
+    dbConnect. updatePassword(passwo, uid)
+
+#    imgPath = dbConnect.getImag(path)
+#    print(imgPath)
+    return render_template('setting.html', imgPath=imgPath)
 
 
 

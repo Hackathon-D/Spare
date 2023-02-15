@@ -1,0 +1,30 @@
+<button id="open-modal" name="open-modal-btn">+</button>
+<div id="demo-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">×</span>
+            <h2>定型文</h2>
+        </div>
+        <div class="templete-list-wrapper">
+            <ul id="templete-list">
+                <li>
+                    <button class="templete-msg" id=templete1 href="#">お世話になっております、よろしくお願いいたします。</button>
+                </li>
+                <li>
+                    <button class="templete-msg" id=templete2 href="#">早く納品してください！急いでください！！！！！！！！！！！！！！！！！！！</button>
+                </li>
+                <li>
+                    <button class="templete-msg" id=templete2 href="#">お世話になっております。よろしくお願いいたします。</button>
+                </li>
+                <li>
+                    <button class="templete-msg" id=templete2 href="#">明日休みます！！！！！！！！！！！！！！</button>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-body">
+            <form action='/teikei' class='registerform' id="tourokuform" name="registerform" method="post">
+                <input type="text" id="tourokuform" name="register" required>
+<input type="hidden" name='cid' value='{{ channel.id }}'>
+                <button id="submit-templete">登録</button>
+<p>{{ teikei }}</p>
+            </form>

@@ -175,7 +175,23 @@
   right: 8px;
 }
 
+#save-message-btn {
+  position: absolute;
+  background-color: var(--carbon);
+  height: 40px;
+  width: 40px;
+  line-height: 47px;
+  padding: 0;
+  margin: 0;
+  bottom: 60px;
+  right: 8px;
+}
+
 #add-message-btn ion-icon {
+  font-size: 1.3rem;
+}
+
+#save-message-btn ion-icon {
   font-size: 1.3rem;
 }
 

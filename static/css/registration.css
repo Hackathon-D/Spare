@@ -132,6 +132,9 @@ a[class="switch-register-mode"]:hover{
     color: red;
   }
 
+#buttonEye {
+    color: black;
+}
 
 @media only screen and (min-width: 640px) and (max-width: 1023px) {
     .registration-main {
