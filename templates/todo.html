@@ -7,8 +7,8 @@
 <div class="todo-wrapper">
 <form action="/todo" method="post">
         <div id="todo-input">
-            <label>タスク名: <textarea name="tkna" autofocus required></textarea></label>
-            <label >期日: <input type="date" required></label><br>
+            <label>タスク名: <textarea name="tkna" id="datainput" rows="1" autofocus required></textarea></label>
+            <label >期日: <input type="date" name="kizi" id="datainput" required></label><br>
             <fieldset>
             <p>優先度:</p>
                 <input id="item-1" class="radio-inline__input" type="radio" name="level" value="低"/>
@@ -26,8 +26,6 @@
             </fieldset>
             <button id="submit">登録</button>
 </form>
-<p>{{ todolist }}</p>
-
         </div>
         <hr>
         <div class="todo_filter">
@@ -36,17 +34,22 @@
         <a href="#" id="show_done">完了済み</a>
         </div>
 <!-- ここをform, submitに切り替える -->
-    <form action="submit">
         <table>
             <tr>
                 <th id="todoLabel">タスク名</th>
                 <th id="priorityLabel">優先度</th>
                 <th id="dateLabel">期日</th>
-                <th id="doneLabel">完了</th>
-                <th id="deleteLabel">削除</th>
+                <!-- <th id="doneLabel">完了</th>
+                <th id="deleteLabel">削除</th> -->
             </tr>
+            {% for todos in todolist %}
+            <tr>
+            <td class="templete-msg" id="templete1" value={{ todos.tkname }}>{{ todos.tkname }}</td>
+            <td class="templete-msg" id="templete1" value={{ todos.proity }}>{{ todos.proity }}</td>
+            <td class="templete-msg" id="templete1" value={{ todos.expr }}>{{ todos.expr }}</td>
+            </tr>
+            {% endfor %}
         </table>
-    </form>
 </div>
     <!-- <script src="{{url_for('static',filename='js/todo.js')}}"
     type="text/javascript"

@@ -1,18 +1,41 @@
-const errorPage = document.querySelector(".error");
+const typedTextSpan = document.querySelector(".typed-text");
+const cursorSpan = document.querySelector(".cursor");
 
-// マウスを動かすと目を動かす
-const mouseMove = (e) => {
-  const eyes = document.querySelectorAll(".eye");
-  eyes.forEach((eye) => {
-    const x = eye.offsetLeft + eye.offsetWidth / 2;
-    const y = eye.offsetTop + eye.offsetHeight / 2;
-    const rad = Math.atan2(e.pageX - x, e.pageY - y);
-    const rot = rad * (180 / Math.PI) * -1 + 180;
-    eye.csswebkitTransform = "rotate(" + rot + "deg)";
-    eye.mozTransform = "rotate(" + rot + "deg)";
-    eye.msTransform = "rotate(" + rot + "deg)";
-    eye.style.transform = "rotate(" + rot + "deg)";
-  });
-};
+const textArray = ["not found.", "ページが見つかりません。"];
+const typingDelay = 50;
+const erasingDelay = 25;
+const newTextDelay = 2000; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
 
-errorPage.addEventListener("mousemove", (e) => mouseMove(e));
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+  	setTimeout(erase, newTextDelay);
+  }
+}
+
+function erase() {
+	if (charIndex > 0) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+    charIndex--;
+    setTimeout(erase, erasingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+    textArrayIndex++;
+    if(textArrayIndex>=textArray.length) textArrayIndex=0;
+    setTimeout(type, typingDelay + 1100);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+  if(textArray.length) setTimeout(type, newTextDelay + 250);
+});

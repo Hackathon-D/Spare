@@ -1,13 +1,13 @@
 .todo-wrapper {
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
   padding: 30px 30px 50px;
   box-shadow: 0 0 10px 0 lightgray;
   background-color: #ffff;
 }
 
-.todo-input input { 
-    margin: 0.5rem 1rem 0.5rem 0; 
+#datainput {
+  border-bottom: #888 solid;
 }
 
 input[type='number'] {

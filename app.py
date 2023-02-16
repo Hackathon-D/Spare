@@ -33,8 +33,6 @@ def todo():
 '''
 
 
-
-
 @app.route('/todo')
 def todo():
     uid = session.get("uid")
@@ -69,8 +67,6 @@ def todolist():
 
 
     return render_template('todo.html',todolist=todolist)
-
-
 
 
 
@@ -148,10 +144,33 @@ def logout():
     session.clear()
     return redirect('/login')
 
-
-@app.route('/templete', methods=['GET', 'POST'])
+@app.route('/templete', methods=['POST'])
 def templete():
-    return render_template('/templete.html')
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+
+    message = request.form.get('message')
+    channel_id = request.form.get('channel_id')
+    #user_id = request.form.get('message_uid')
+
+    if message:
+        dbConnect.createMessage(uid, channel_id, message)
+
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    tim = dbConnect.getTimeMessage(channel_id)
+
+    #time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("OKうえーい"+str(tim))
+    uname = dbConnect.getUsername(uid)
+    #print(username)
+
+
+
+    return render_template('/detail.html', messages=messages, channel=channel, uid=uid, tim=tim, uname=uname)
+
 
 @app.route('/')
 def index():
@@ -224,6 +243,9 @@ def detail(cid):
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
+
+    sitagaki = dbConnect.getSitagakiAll(uid)    
+
     cid = cid
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
@@ -236,10 +258,13 @@ def detail(cid):
 #    kidoku = dbConnect.getKidokulist()
 #    print(kidoku)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)#, uname=uname)
+
+    teikei = dbConnect.getTeikeibun(uid)
 
 
-#大改造
+    return render_template('detail.html',teikei=teikei, messages=messages, channel=channel, uid=uid, sitagaki=sitagaki)
+
+
 @app.route('/message', methods=['POST'])
 def add_message():
     uid = session.get("uid")
@@ -264,8 +289,46 @@ def add_message():
     #print(username)
 
 
+    sitagaki = dbConnect.getSitagakiAll(uid)
+    teikei = dbConnect.getTeikeibun(uid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid, tim=tim, uname=uname)
+
+
+    return render_template('detail.html',teikei=teikei,  sitagaki=sitagaki, messages=messages, channel=channel, uid=uid, tim=tim, uname=uname)
+
+
+
+@app.route('/sitagaki', methods=['POST'])
+def add_sitagaki():
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/login')
+
+    message = request.form.get('message')
+    channel_id = request.form.get('channel_id')
+    #user_id = request.form.get('message_uid')
+
+    if message:
+        dbConnect.createSitagaki(uid, channel_id, message)
+
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    tim = dbConnect.getTimeMessage(channel_id)
+
+    uname = dbConnect.getUsername(uid)
+    #print(username)
+
+    sitagaki = dbConnect.getSitagakiAll(uid)
+    teikei = dbConnect.getTeikeibun(uid)
+
+
+
+    return render_template('detail.html',teikei=teikei, sitagaki=sitagaki, messages=messages, channel=channel, uid=uid, tim=tim, uname=uname)
+
+
+
+
 
 
 
@@ -275,7 +338,7 @@ def add_teikei():
     if uid is None:
         return redirect('/login')
 
-#    message_teikei = request.form.get('message')
+    message_teikei = request.form.get('message')
 
     cid_teikei = request.form.get('cid')
     print(cid_teikei)
@@ -287,11 +350,13 @@ def add_teikei():
         dbConnect.createTeikeibun(uid, teikei)
 
     channel = dbConnect.getChannelById(cid_teikei)
-#    messages = dbConnect.getMessageAll(channel_id)
+    messages = dbConnect.getMessageAll(cid_teikei)
 
     teikei = dbConnect.getTeikeibun(uid)
 
-    return render_template('detail.html', channel=channel, uid=uid, teikei=teikei)# =uid,messages=messages)
+    sitagaki = dbConnect.getSitagakiAll(uid)
+
+    return render_template('detail.html', channel=channel, sitagaki=sitagaki,uid=uid, teikei=teikei,messages=messages)
 
 
 
@@ -310,7 +375,13 @@ def delete_message():
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(cid)
 
-    return render_template('detail.html', messages=messages, channel=channel, uid=uid)
+    teikei = dbConnect.getTeikeibun(uid)
+
+    sitagaki = dbConnect.getSitagakiAll(uid)
+
+
+
+    return render_template('detail.html', messages=messages, sitagaki=sitagaki, teikei=teikei,channel=channel, uid=uid)
 
 
 

@@ -202,10 +202,10 @@
   left: 20px;
 }
 
-.time-show {
+.time-show p{
+  margin: 0px 53px 0px 0px;
   display: flex;
   justify-content: right;
-  margin-right: 53px;
 }
 
 @media screen and (max-width: 550px) {

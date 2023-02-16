@@ -1,14 +1,17 @@
 //textareaを定義
 const chatarea_draft = document.getElementById('message');
-//buttonのidを指定
-const draft1 = document.getElementById('templete1-draft');
 
-//buttonを押すとtextareaに代入
-draft1.addEventListener('click', () => {
-    chatarea.value = 'Draft1';
-    modal_draft.style.display = 'none';
-}
-)
+//ボタンの定義
+const buttons_draft = document.querySelectorAll('#draft1');
+
+//ボタンのvalueを取得
+buttons_draft.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.value;
+        chatarea.value = value;
+        modal.style.display = 'none';
+    });
+});
 
 //modalの表示
 const modal_draft = document.getElementById('demo-modal-draft');

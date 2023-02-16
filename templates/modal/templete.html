@@ -7,24 +7,19 @@
         </div>
         <div class="templete-list-wrapper">
             <ul id="templete-list">
-                <li>
-                    <button class="templete-msg" id=templete1 href="#">お世話になっております、よろしくお願いいたします。</button>
-                </li>
-                <li>
-                    <button class="templete-msg" id=templete2 href="#">早く納品してください！急いでください！！！！！！！！！！！！！！！！！！！</button>
-                </li>
-                <li>
-                    <button class="templete-msg" id=templete2 href="#">お世話になっております。よろしくお願いいたします。</button>
-                </li>
-                <li>
-                    <button class="templete-msg" id=templete2 href="#">明日休みます！！！！！！！！！！！！！！</button>
-                </li>
+                {% for teike in teikei %}
+            <li>
+            <button class="templete-msg" id=templete1 value={{ teike.message }}>{{ teike.message }}</button>
+            </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="modal-body">
             <form action='/teikei' class='registerform' id="tourokuform" name="registerform" method="post">
-                <input type="text" id="tourokuform" name="register" required>
+                <input class="tourokuinput" type="text" id="tourokuform" name="register" required>
 <input type="hidden" name='cid' value='{{ channel.id }}'>
                 <button id="submit-templete">登録</button>
-<p>{{ teikei }}</p>
             </form>
+        </div>
+    </div>
+</div>

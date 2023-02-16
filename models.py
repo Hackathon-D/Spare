@@ -188,12 +188,12 @@ class dbConnect:
     
 
 #以下追加機能
-    def getSitagakiAll(cid):
+    def getSitagakiAll(uid):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message, created_at FROM sitagaki AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
-            cur.execute(sql, (cid))
+            sql = "SELECT message FROM sitagaki WHERE uid = %s;"
+            cur.execute(sql, (uid))
             sitagaki = cur.fetchall()
             return sitagaki
         except Exception as e:
@@ -252,32 +252,20 @@ class dbConnect:
     def getUsername(uid):
 
         try:
-
             conn = DB.getConnection()
-
             cur = conn.cursor()
-
             sql = "SELECT * FROM users WHERE uid=%s;"
-
             cur.execute(sql, (uid))
-
             conn.commit()
-
             uname = cur.fetchall()
-
             return uname
 
         except Exception as e:
-
             print(e + 'が発生しています')
-
             return None
 
         finally:
-
             cur.close()
-
-
 
     def gerKidokulist():
         try:
@@ -307,8 +295,6 @@ class dbConnect:
             return None
         finally:
             cur.close()
-
-
 
 
     def createTeikeibun(uid, message):
