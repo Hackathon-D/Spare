@@ -7,8 +7,8 @@
 <div class="todo-wrapper">
 <form action="/todo" method="post">
         <div id="todo-input">
-            <label>タスク名: <textarea name="tkna" id="datainput" rows="1" autofocus required></textarea></label>
-            <label >期日: <input type="date" name="kizi" id="datainput" required></label><br>
+            <label >タスク名: <textarea name="tkna" id="datainput" rows="1" autofocus required></textarea></label><br>
+            <label >　　期日: <input type="date" name="kizi" id="datainput" required></label><br>
             <fieldset>
             <p>優先度:</p>
                 <input id="item-1" class="radio-inline__input" type="radio" name="level" value="低"/>
@@ -39,19 +39,25 @@
                 <th id="todoLabel">タスク名</th>
                 <th id="priorityLabel">優先度</th>
                 <th id="dateLabel">期日</th>
-                <!-- <th id="doneLabel">完了</th>
-                <th id="deleteLabel">削除</th> -->
+                <th id="deleteLabel">削除</th>
             </tr>
             {% for todos in todolist %}
             <tr>
             <td class="templete-msg" id="templete1" value={{ todos.tkname }}>{{ todos.tkname }}</td>
             <td class="templete-msg" id="templete1" value={{ todos.proity }}>{{ todos.proity }}</td>
             <td class="templete-msg" id="templete1" value={{ todos.expr }}>{{ todos.expr }}</td>
+            <td class="delete-tmp" id="deletedo">
+                <form action="/todo_delete" method="POST">
+                <button class="delete-todo" name="todo_id" value="{{ todos.id }}">
+                  <ion-icon name="trash-bin-outline"></ion-icon>
+                </button>
+              </form>
+            </td>
             </tr>
             {% endfor %}
         </table>
 </div>
-    <!-- <script src="{{url_for('static',filename='js/todo.js')}}"
+    <script src="{{url_for('static',filename='js/todo.js')}}"
     type="text/javascript"
-  ></script> -->
+  ></script>
     {% endblock %}

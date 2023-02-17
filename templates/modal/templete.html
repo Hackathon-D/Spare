@@ -11,6 +11,12 @@
             <li>
             <button class="templete-msg" id=templete1 value={{ teike.message }}>{{ teike.message }}</button>
             </li>
+            <form action="/delete_teikei" method="POST">
+            <input type="hidden" value="{{ channel.id }}" name="channel_id"/>
+            <button class="templete-delete" name="teikei_id" value="{{ teike.id }}">
+                <ion-icon name="trash-bin-outline"></ion-icon>
+            </button>
+            </form>
                 {% endfor %}
             </ul>
         </div>

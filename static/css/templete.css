@@ -21,6 +21,7 @@
   margin: 5px;
   padding: 5px;
   max-height: 50px;
+  max-width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -34,4 +35,8 @@
 
 .registerform {
   text-align: center;
+}
+
+.templete-delete {
+
 }

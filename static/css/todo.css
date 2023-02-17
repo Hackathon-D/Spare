@@ -1,5 +1,5 @@
 .todo-wrapper {
-  width: 600px;
+  width: 900px;
   margin: 0 auto;
   padding: 30px 30px 50px;
   box-shadow: 0 0 10px 0 lightgray;
@@ -7,11 +7,12 @@
 }
 
 #datainput {
+  width: 200px;
   border-bottom: #888 solid;
 }
 
-input[type='number'] {
-     width: 30px; 
+.todo_label_input {
+  margin-bottom: 20px;
 }
 
 input[type="radio"] {

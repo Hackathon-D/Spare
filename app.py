@@ -27,26 +27,20 @@ app.permanent_session_lifetime = timedelta(days=30)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-'''
-@app.route('/todo') 
-def todo():
-    return render_template('/todo.html')
-'''
-
-
 @app.route('/todo')
 def todo():
     uid = session.get("uid")
     if uid is None:
         return redirect('/login')
-
+    
+    todolist = dbConnect.getTodoAll(uid)
     tkname = request.form.get("tkna")
     expr = request.form.get("kizi")
     prio = request.form.get("level")
 
     print("toooooooo")
     print(tkname)
-    return render_template('todo.html')
+    return render_template('todo.html', todolist=todolist)
 
 @app.route('/todo', methods=['POST'])
 def todolist():
@@ -69,7 +63,41 @@ def todolist():
 
     return render_template('todo.html',todolist=todolist)
 
+@app.route('/todo_delete', methods=['POST'])
 
+def todo_delete():
+
+    uid = session.get("uid")
+
+    if uid is None:
+
+        return redirect('/login')
+
+
+
+    tkname = request.form.get("tkna")
+
+    expr = request.form.get("kizi")
+
+    prio = request.form.get("level")
+
+
+
+
+
+    todolist = dbConnect.getTodoAll(uid)
+
+
+
+    todo_id = request.form.get("todo_id")
+
+    dbConnect.deleteTodolist(todo_id)
+
+
+
+
+
+    return render_template('todo.html',todolist=todolist)
 
 @app.route('/signup')
 def signup():
@@ -359,7 +387,89 @@ def add_teikei():
 
     return render_template('detail.html', channel=channel, sitagaki=sitagaki,uid=uid, teikei=teikei,messages=messages)
 
+@app.route('/delete_teikei', methods=['POST'])
 
+def delete_teikei():
+
+    uid = session.get("uid")
+
+    if uid is None:
+
+        return redirect('/login')
+
+
+
+    teikei_id = request.form.get('teikei_id')
+
+    cid = request.form.get('channel_id')
+
+    print(teikei_id)
+
+    if teikei_id:
+
+        dbConnect.deleteTeikeibun(teikei_id)
+
+    print("aaaaa")
+
+    channel = dbConnect.getChannelById(cid)
+
+    messages = dbConnect.getMessageAll(cid)
+
+
+
+    teikei = dbConnect.getTeikeibun(uid)
+
+
+
+    sitagaki = dbConnect.getSitagakiAll(uid)
+
+
+
+
+
+    return render_template('detail.html', messages=messages, sitagaki=sitagaki, teikei=teikei,channel=channel, uid=uid)
+
+
+
+
+
+@app.route('/delete_sitagaki', methods=['POST'])
+
+def delete_sitagaki():
+
+    uid = session.get("uid")
+
+    if uid is None:
+
+        return redirect('/login')
+
+
+
+    sitagaki_id = request.form.get('sitagaki_id')
+
+    cid = request.form.get('channel_id')
+
+    if sitagaki_id:
+
+        dbConnect.deleteSitagaki(sitagaki_id)
+
+
+
+    channel = dbConnect.getChannelById(cid)
+
+    messages = dbConnect.getMessageAll(cid)
+
+
+
+    teikei = dbConnect.getTeikeibun(uid)
+
+
+
+    sitagaki = dbConnect.getSitagakiAll(uid)
+
+
+
+    return render_template('detail.html', messages=messages, sitagaki=sitagaki, teikei=teikei,channel=channel, uid=uid)
 
 
 @app.route('/delete_message', methods=['POST'])
@@ -392,9 +502,15 @@ def delete_message():
 @app.route('/setting')
 def setting():
 
+    uid = session.get("uid")
+    if uid is None:
+        return redirect('/setting')
+
+    uname = dbConnect.getUsername(uid)
+
     imgPath={'path': 'ここに画像パス表示'}
 
-    return render_template('/setting.html',imgPath=imgPath)
+    return render_template('/setting.html',imgPath=imgPath, uname=uname)
 
 
 @app.route('/setting', methods=['POST'])
@@ -406,6 +522,7 @@ def setting_img():
     uid = session.get("uid")
     if uid is None:
         return redirect('/setting')
+    uname = dbConnect.getUsername(uid)
 
     image = request.files['image']
     print(image)
@@ -424,7 +541,7 @@ def setting_img():
 
         imgPath = dbConnect.getImag(path)
         print(imgPath)
-    return render_template('setting.html',imgPath=imgPath)
+    return render_template('setting.html',imgPath=imgPath, uname=uname)
 
 
 @app.route('/henkouN', methods=['POST'])

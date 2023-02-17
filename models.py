@@ -192,7 +192,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT message FROM sitagaki WHERE uid = %s;"
+            sql = "SELECT * FROM sitagaki WHERE uid = %s;"
             cur.execute(sql, (uid))
             sitagaki = cur.fetchall()
             return sitagaki
@@ -254,10 +254,10 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM users WHERE uid=%s;"
+            sql = "SELECT user_name FROM users WHERE uid=%s;"
             cur.execute(sql, (uid))
             conn.commit()
-            uname = cur.fetchall()
+            uname = cur.fetchone()
             return uname
 
         except Exception as e:
@@ -315,7 +315,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT message FROM teikeibun WHERE uid=%s;"
+            sql = "SELECT * FROM teikeibun WHERE uid=%s;"
             cur.execute(sql, (uid))
             teikeibun = cur.fetchall()
             return teikeibun

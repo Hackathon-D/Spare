@@ -1,7 +1,7 @@
 .chat-box {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--snow);
+  background-color: #404258;
   box-shadow: 0 0 30px var(--wood);
   z-index: 2;
   display: flex;
@@ -92,15 +92,21 @@
 }
 
 .box-left {
+  color: white;
   border: 1px solid var(--dark_pink);
-  background-color: var(--baby_pink);
+  background-color: #6B728E;
 }
 
 .box-right {
-  border: 1px solid var(--middle_green);
-  background-color: var(--tiffany_green);
+  color: white;
+  border: 1px solid #8EA7E9;
+  background-color: #8EA7E9;
   margin-left: auto;
   margin-right: 10px;
+}
+
+.box-right p {
+  z-index: auto;
 }
 
 .box-left:before {
@@ -110,7 +116,6 @@
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  border: 2px solid #333;
   content: "";
 }
 
@@ -121,7 +126,6 @@
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  border: 2px solid #333;
   content: "";
 }
 /* ========================================================== */
