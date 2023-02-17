@@ -23,6 +23,7 @@ app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
 #app.config['MAX_CONTENT_LENGTH'] = 70 * 1024 * 1024
+#test
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
