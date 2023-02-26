@@ -263,7 +263,8 @@ def delete_channel(cid):
         else:
             dbConnect.deleteChannel(cid)
             channels = dbConnect.getChannelAll()
-            return render_template('index.html', channels=channels, uid=uid)
+            uname = dbConnect.getUsername(uid)
+            return render_template('index.html', channels=channels, uid=uid, uname=uname)
 
 
 #message打つURLはここ！
@@ -530,21 +531,10 @@ def setting_img():
     print(image)
     if image:
         # Save the image file.
-        filename = secure_filename(image.filename)
-        print(filename)
-        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-        print("bbbbbbb")
-
-        path = UPLOAD_FOLDER + filename 
-
-        print(path)
-        dbConnect.createImag(uid,path)
-
-        imgPath = dbConnect.getImag(path)
-        print(imgPath)
-    return render_template('setting.html',imgPath=imgPath, uname=uname)
-
+        file = request.files['image']
+        filename = (uname["user_name"]) + '.jpg'
+        file.save('./static/img/' + filename)
+    return render_template('setting.html', uname=uname)
 
 @app.route('/henkouN', methods=['POST'])
 def setting_henkouN():
@@ -567,7 +557,8 @@ def setting_henkouN():
 
 #    imgPath = dbConnect.getImag(path)
 #    print(imgPath)
-    return render_template('setting.html', imgPath=imgPath)
+    uname = dbConnect.getUsername(uid)
+    return render_template('setting.html', imgPath=imgPath, uname=uname)
 
 
 
@@ -592,7 +583,8 @@ def setting_henkouE():
 
 #    imgPath = dbConnect.getImag(path)
 #    print(imgPath)
-    return render_template('setting.html', imgPath=imgPath)
+    uname = dbConnect.getUsername(uid)
+    return render_template('setting.html', imgPath=imgPath, uname=uname)
 
 
 @app.route('/henkouP', methods=['POST'])
@@ -616,7 +608,8 @@ def setting_henkouP():
 
 #    imgPath = dbConnect.getImag(path)
 #    print(imgPath)
-    return render_template('setting.html', imgPath=imgPath)
+    uname = dbConnect.getUsername(uid)
+    return render_template('setting.html', imgPath=imgPath, uname=uname)
 
 
 

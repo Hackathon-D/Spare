@@ -1,3 +1,6 @@
+SET GLOBAL validate_password.length=4;
+SET GLOBAL validate_password.policy=LOW;
+
 DROP DATABASE chatapp;
 DROP USER 'testuser'@'localhost';
 

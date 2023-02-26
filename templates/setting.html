@@ -6,18 +6,14 @@
 <div class="setting-content-wrapper">
     <div class="setting_wrapper">
       <h1>設定</h1>
+      <img class="profile_img" src=./static/img/{{ uname.user_name }}.jpg>
       <div class="icon_name">
-      <span class="material-icons large-size">
-          account_circle
-          </span>
-          <div id="hereisimagearea"></div>
           <p>{{ uname.user_name }}</p>
           <div class="upload_image">
             <h3>画像のアップロード</h3>
             <form method="post" enctype="multipart/form-data">
-            <input type="file" id="image_select" name="image">
+            <input type="file" id="image_select" name="image" value="profile.jpg">
             <input type="submit" id="upload_image" value="Upload">
-            <img src={{ imgPath.path }}>
             </form>
       </div>
       <div class="user_profile">
