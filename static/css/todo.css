@@ -1,13 +1,21 @@
+.todo-body {
+  background: rgb(47,1,120);
+  background: rgb(47,1,120);
+  background: linear-gradient(180deg, rgba(47,1,120,1) 0%, rgba(255,255,255,1) 100%);
+}
+
 .todo-wrapper {
   width: 900px;
   margin: 0 auto;
   padding: 30px 30px 50px;
   box-shadow: 0 0 10px 0 lightgray;
-  background-color: #ffff;
+  background-color: #f0eeee;
 }
 
 #datainput {
-  width: 200px;
+  background-color: transparent;
+  font-size: 20px;
+  width: 300px;
   border-bottom: #888 solid;
 }
 
@@ -122,4 +130,16 @@ fieldset {
   outline-offset: -2px;
   outline-style: auto;
   outline-width: 5px;
+}
+
+.delete-todo {
+  background-color: transparent;
+}
+
+.backtoindex {
+  display: flex;
+  justify-content: end;
+  width: 10px;
+  margin: 0 0 0 auto;
+  color: black;
 }

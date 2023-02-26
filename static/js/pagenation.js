@@ -86,7 +86,22 @@ const pagination = () => {
     show(page, STEP);
     colorPaginationNum();
   });
+
+  //最初のページに戻る
+  document.getElementById("prev1st").addEventListener("click", () => {
+    page = 1;
+    show(page, STEP);
+    colorPaginationNum();
+    });
+   
+// 最後のページに遷移
+  document.getElementById("latest").addEventListener("click", () => {
+  page = Math.ceil(channels.length / STEP);
+  show(page, STEP);
+  colorPaginationNum();
+  });
 };
+
 
 window.onload = () => {
   pagination();

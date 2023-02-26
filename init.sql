@@ -8,7 +8,7 @@ GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser'@'localhost';
 
 CREATE TABLE users (
     uid varchar(255) PRIMARY KEY,
-    user_name varchar(255) UNIQUE NOT NULL,
+    user_name varchar(50) UNIQUE NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL
 );
@@ -66,6 +66,19 @@ CREATE TABLE imag (
     path varchar(255) not null
 );
 
+CREATE TABLE riaction (
+    id serial PRIMARY KEY,
+    path varchar(255) not null
+);
+
+
+CREATE TABLE kidoku (
+    uid varchar(255) PRIMARY KEY REFERENCES users(uid),
+    cid integer REFERENCES channels(id) ON DELETE CASCADE,
+    uname0 varchar(50)
+);
+
+
 INSERT INTO users(uid, user_name, email, password)VALUES('970af84c-dd40-47ff-af23-282b72b7cca8','テスト','test@gmail.com','37268335dd6931045bdcdf92623ff819a64244b53d0e746d438797349d4da578');
 INSERT INTO channels(id, uid, name, abstract)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8','部屋','テストさんの部屋です');
 INSERT INTO messages(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', '初の投稿です。');
@@ -74,3 +87,7 @@ INSERT INTO sitagaki(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-28
 INSERT INTO teikeibun(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'よろしくお願いいたします。');
 INSERT INTO sured(id, uid, cid, message)VALUES(1, '970af84c-dd40-47ff-af23-282b72b7cca8', '1', 'これはメッセージに対しての返信です。');
 INSERT INTO imag(path)VALUES('This is INIT.');
+INSERT INTO riaction(id, path)VALUES(1,'./static/img/glad.png');
+INSERT INTO riaction(id, path)VALUES(2,'./static/img/good.png');
+INSERT INTO riaction(id, path)VALUES(3,'./static/img/hooray.png');
+INSERT INTO kidoku(uid,uname0)VALUES('970af84c-dd40-47ff-af23-282b72b7cca8', 'テスト');

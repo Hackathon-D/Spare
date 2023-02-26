@@ -58,3 +58,10 @@ function outsideClose(e) {
     deleteChannelModal.style.display = "none";
   }
 }
+
+const reaction_modal = document.getElementsByClassName('reaction-add');
+
+//clickするとmodalを開く処理
+reaction_modal.onclick = function() {
+  reaction_modal.style.display = 'block';
+};

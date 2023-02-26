@@ -457,3 +457,17 @@ class dbConnect:
         cur.execute(sql, (password, uid))
         conn.commit()
         cur.close()
+
+    def getReaction():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT path FROM riaction;"
+            cur.execute(sql)
+            reaction = cur.fetchall()
+            return reaction
+        except Exception as e:
+            print(e + 'が発生しています')
+            return None
+        finally:
+            cur.close()

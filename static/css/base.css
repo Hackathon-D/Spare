@@ -119,3 +119,7 @@ button.green:hover {
     align-items: center;
     overflow-x: hidden;
 }
+
+ion-icon:not(#burger-icon):not(#burger-close-icon){
+    pointer-events: none;
+}

@@ -95,7 +95,7 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 639px) {
+@media screen and (max-width: 6390px) {
   .navigation {
     display: none;
   }

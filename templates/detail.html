@@ -7,21 +7,49 @@
     <div class="chat-box">
       <div id="chat-header">
         <!-- もしuidとチャンネル作成者が同じならタイトル、説明を編集可能にする -->
+        <a href="{{ url_for('index') }}">
+          <span id="backtoindex" class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon> 戻る</span>
+        </a>
         <p id="chatroom-name">{{ channel.name }}</p>
         {% if channel.abstract is not none %}
           <p id="chatroom-description">{{ channel.abstract }}</p>
         {% endif %}
         {% if uid == channel.uid %}
           <button id='channel-update' class="basic-btn smaller-btn">編集</button>
-          {% include 'modal/update-channel.html' %}
+         {% include 'modal/update-channel.html' %}
         {% endif %}
       </div>
+      {% for react in reaction %}   
+      <p>{{react.path}}</p>
+       {% endfor %}
       <div id="message-area">
         {% if messages|length > 0 %}
           {% for message in messages %}
             {% if message.uid == uid %}
+            <div id="demo-modal-reaction" class="modal-reaction">
+              <div class="modal-content-reaction">
+                  <div class="modal-header-reaction">
+                      <span class="close-reaction">×</span>
+                      <h2>リアクションを追加</h2>
+                  </div>
+                  <div class="reaction-list-wrapper">
+                      <ul id="reaction-list">
+                      <li>
+                      <button class="reaction-msg" id="reaction1" value=><ion-icon name="thumbs-up-outline"></ion-icon></button>
+                      </li>
+                      <li>
+                      <button class="reaction-msg" id="reaction1" value=><ion-icon name="thumbs-down-outline"></ion-icon></button>
+                      </li>
+                      <li>
+                      <button class="reaction-msg" id="reaction1" value=>ボタン3</button>
+                      </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
               <div class="my-messages">
                 <p class="box box-right">{{ message.message }}</p>
+                <button class="reaction-add"><ion-icon name="add-circle-outline"></ion-icon></button>
                 <form action="/delete_message" method="POST">
                   <input type="hidden" value="{{ channel.id }}" name="channel_id" />
                   <button
@@ -33,13 +61,22 @@
                   </button>
                 </form>
               </div>
+              <!-- <div class="reaction-area">
+                <li><ion-icon name="trash-bin-outline"></ion-icon></li>
+                <li><ion-icon name="trash-bin-outline"></ion-icon></li>
+              </div> -->
               <div class="time-show">
               <p>{{ message.created_at }}</p>
               </div>
+              <div class="reaction-show">
+                </div>
             {% else %}
               <div class="messages">
                 <p class="user-name">{{ message.user_name }}</p>
-                <p class="box box-left">{{ message.message }}</p>
+                <p id="boxleft" class="box box-left">{{ message.message }}</p>
+                <div class="time-show2">
+                <p>{{ message.created_at }}</p>
+              </div>
               </div>
             {% endif %}
           {% endfor %}
@@ -88,5 +125,11 @@
   ></script>
   <script src="{{url_for('static',filename='js/draft.js')}}"
   type="text/javascript"
+></script>
+<script src="{{url_for('static',filename='js/detail.js')}}"
+type="text/javascript"
+></script>
+<script src="{{url_for('static',filename='js/reaction.js')}}"
+type="text/javascript"
 ></script>
 {% endblock %}

@@ -13,7 +13,7 @@ import werkzeug
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-UPLOAD_FOLDER = '/root/hakkason/Spare/static/img'
+UPLOAD_FOLDER = './static/img/'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
@@ -207,8 +207,9 @@ def index():
     if uid is None:
         return redirect('/login')
     else:
+        uname = dbConnect.getUsername(uid)
         channels = dbConnect.getChannelAll()
-    return render_template('index.html', channels=channels, uid=uid)
+    return render_template('index.html', channels=channels, uid=uid, uname=uname)
 
 
 #index.html
@@ -289,7 +290,8 @@ def detail(cid):
 
 
     teikei = dbConnect.getTeikeibun(uid)
-
+    reaction = dbConnect.getReaction()
+    print(reaction)
 
     return render_template('detail.html',teikei=teikei, messages=messages, channel=channel, uid=uid, sitagaki=sitagaki)
 

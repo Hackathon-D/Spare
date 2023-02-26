@@ -3,6 +3,7 @@
   <title>Setting</title>
 {% endblock %}
 {% block body %}
+<div class="setting-content-wrapper">
     <div class="setting_wrapper">
       <h1>設定</h1>
       <div class="icon_name">
@@ -22,11 +23,11 @@
       <div class="user_profile">
       </div>
       <div class="change_profile">
-          <h1>ユーザー情報の編集</h1>
+          <p class="user-edit">ユーザー情報の編集</p>
           <div class="change_info_wrapper">
           <form id="change_username" action="/henkouN" method="post">
               <p>Username</p>
-              <input id="username_input" name="uname" type="text" required>
+              <input id="username_input" name="uname" type="text" required placeholder="{{ uname.user_name }}">
               <br><button id="change">変更</button>
           </form>
           </div>
@@ -48,6 +49,7 @@
       </div>
   <a href="{{ url_for('index') }}">Homeへ戻る</a>
   </div>
+</div>
   <script
   src="{{url_for('static',filename='js/setting.js')}}"
   type="text/javascript"

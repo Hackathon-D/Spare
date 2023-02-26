@@ -130,21 +130,51 @@ a[class="switch-register-mode"]:hover{
     bottom: 20px;
     font-size: 10px;
     color: red;
-  }
+}
 
-#buttonEye {
-    color: black;
+@media screen and (max-width: 639px) {
+    #buttonEye {
+        position: absolute;
+        top: 48%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: black;
+    }
 }
 
 @media only screen and (min-width: 640px) and (max-width: 1023px) {
     .registration-main {
     font-size: 150px;
     }
+    #buttonEye {
+        position: absolute;
+        top: 52%;
+        right: 20px;
+        transform: translateY(-50%);
+        color: black;
+    }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (max-width: 1879px) {
     .registration-main {
     font-size: 150px;
+    }
+    #buttonEye {
+        position: absolute;
+        top: 52%;
+        right: 100px;
+        transform: translateY(-50%);
+        color: black;
+    }
+}
+
+@media screen and (min-width: 1880px) {
+    #buttonEye {
+        position: absolute;
+        top: 50%;
+        right: 200px;
+        transform: translateY(-50%);
+        color: black;
     }
 }
   

@@ -3,33 +3,50 @@
   <title>home</title>
 {% endblock %}
 {% block body %}
+
   <div class="main-container channelpage">
-    <img src="{{ url_for('static',filename='img/cat-gif-unscreen.gif') }}" id="gif" />
     <div class="bg-img"></div>
+    <div class="welcome-back">
+    <h1>Welcome back, {{ uname.user_name }}さん</h1>
+    </div>
     <div class="main-content">
-        <div class="channel-title">
-        <h1>チャンネル一覧</h1>
-        <button id="add-channel-btn">チャンネル追加</button>
-      </div>
-  <li class="list">
-    <a href="{{ url_for('setting') }}">
-      <span class="title">設定</span>
-    </a>
-  </li>
-  <li class="list">
-    <a href="{{ url_for('todo') }}">
-      <span class="title">todo</span>
-    </a>
-  </li>
-    </ul>      
-      <div class="pagination-container">
-        <p id="prev"><</li>
-        <ul class="pagination"></ul>
-        <p id="next">></p>
-      </div>
+      <div class="floating-container">
+        <div class="floating-item">
+          <a href="{{ url_for('todo') }}">
+            <div class="item-content" id="fadeUp">
+              <span class="list-icon"><ion-icon name="list-outline"></ion-icon></span>
+              <p>Todoリスト</p>
+            </div>
+          </a>
+        </div>
+        <div class="floating-item" id="fadeUp">
+          <a id="add-channel-btn">
+            <div class="item-content">
+              <span class="list-icon"><ion-icon name="add-circle-outline"></ion-icon></span>
+              <p>チャンネルを作成</p>
+            </div>
+          </a>
+        </div>
+        <div class="floating-item" id="fadeUp">
+          <a href="{{ url_for('setting') }}">
+            <div class="item-content">
+              <span class="list-icon"><ion-icon name="settings-outline"></ion-icon></span>
+              <p>設定</p>
+            </div>
+          </a>
+        </div>
+      </div>  
+      <p class="channellist">チャンネル一覧</p>
       <ul class="channel-box"></ul>
       {% include 'modal/add-channel.html' %}
       {% include 'modal/delete-confirmation.html' %}
+      <div class="pagination-container">
+        <p id="prev1st"><ion-icon name="chevron-back-outline"></ion-icon><ion-icon name="chevron-back-outline"></ion-icon></p>
+        <p id="prev"><ion-icon name="chevron-back-circle"></ion-icon>
+        <ul class="pagination"></ul>
+        <p id="next"><ion-icon name="chevron-forward-circle"></ion-icon></p>
+        <p id="latest"><ion-icon name="chevron-forward-outline"></ion-icon><ion-icon name="chevron-forward-outline"></ion-icon></p>
+      </div>
     </div>
   </div>
 {% endblock %}
