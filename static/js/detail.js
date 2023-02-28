@@ -1,18 +1,7 @@
-// // メッセージ表示エリアを取得
-// const messageArea = document.querySelector('.my-messages');
-
-// // メッセージ表示エリアをホバーしたときの処理
-// messageArea.addEventListener('mouseenter', () => {
-//   // リアクションの選択肢を表示する要素を取得
-//   const reactionSelect = messageArea.querySelector('.reaction-select');
-//   // リアクションの選択肢を表示する
-//   reactionSelect.style.display = 'block';
-// });
-
-// // メッセージ表示エリアからマウスが離れたときの処理
-// messageArea.addEventListener('mouseleave', () => {
-//   // リアクションの選択肢を表示する要素を取得
-//   const reactionSelect = messageArea.querySelector('.reaction-select');
-//   // リアクションの選択肢を非表示にする
-//   reactionSelect.style.display = 'none';
-// });
+// Enterキーが押された場合にsubmitを実行する（Shift + Enterは除外する）
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13 && !event.shiftKey) {
+      event.preventDefault(); // デフォルトのEnterキーの動作をキャンセルする
+      document.getElementById('add-message-btn').click(); // ボタンをクリックする
+    }
+  });

@@ -2,6 +2,7 @@
   border: #888 solid;
   margin: 15px;
   padding: 15px;
+  border-radius: 20px;
 }
 
 #templete-list {
@@ -28,8 +29,67 @@
   border-radius: 0%;
 }
 
+.modal-templete {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 0.5s;
+  cursor: default;
+}
+
+.modal-header-templete {
+  padding: 12px;
+  background-color: grey;
+  color: white;
+}
+
+.modal-content-templete {
+  position: relative;
+  background-color: #fff;
+  margin: 10% auto;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-header-draft {
+  padding: 12px;
+  background-color: grey;
+  color: white;
+}
+
+.modal-body-templete {
+  padding: 12px;
+}
+
+.modal-footer-templete{
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 12px;
+}
+
+.close-templete {
+  color: #aaa;
+  float: right;
+  font-size: 16px;
+}
+
+.close-templete:hover,
+.close-templete:focus {
+  color: black;
+  cursor: pointer;
+}
+
 .tourokuinput {
-  width: 75%;
+  width: 45%;
   border-bottom: #888 solid;
 }
 
@@ -39,4 +99,10 @@
 
 .templete-delete {
   background-color: transparent;
+}
+
+#submit-templete {
+  border-radius: 0;
+  padding: 5px;
+  margin: 5px;
 }

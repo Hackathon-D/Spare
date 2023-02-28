@@ -2,6 +2,7 @@
     border: #888 solid;
     margin: 15px;
     padding: 15px;
+    border-radius: 20px;
   }
   
   #draft-list {
@@ -25,6 +26,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  #draft1 {
+    width: 300px;
+    margin: 5px;
+    padding: 5px;
+    max-height: 50px;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 0%;
+  }
   
   .modal-draft {
     display: none;
@@ -37,7 +50,8 @@
     background: rgba(0, 0, 0, 0.8);
     z-index: 99999;
     animation-name: show;
-    animation-duration: 0.5s
+    animation-duration: 0.5s;
+    cursor: default;
   }
   
   .modal-content-draft {
@@ -87,4 +101,8 @@
   .close-draft:focus {
     color: black;
     cursor: pointer;
+  }
+
+  .sitagaki-delete {
+    background-color: transparent;
   }

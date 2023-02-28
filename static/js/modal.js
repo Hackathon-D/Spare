@@ -1,3 +1,16 @@
+//modalの外をクリックしたら閉じる処理
+window.onclick = function(event) {
+  if(event.target == modal_reaction) {
+      modal_reaction.style.display = 'none';
+  }
+  if(event.target == modal_draft) {
+    modal_draft.style.display = 'none';
+  }
+  if(event.target == modal_templete) {
+  modal_templete.style.display = 'none';
+  }
+};
+
 // モーダルを表示させる
 
 const addChannelModal = document.getElementById("add-channel-modal");
@@ -46,16 +59,6 @@ function modalClose(mode) {
     deleteChannelModal.style.display = "none";
   } else if (mode === "update") {
     updateChannelModal.style.display = "none";
-  }
-}
-
-// モーダルコンテンツ以外がクリックされた時
-addEventListener("click", outsideClose);
-function outsideClose(e) {
-  if (e.target == addChannelModal) {
-    addChannelModal.style.display = "none";
-  } else if (e.target == deleteChannelModal) {
-    deleteChannelModal.style.display = "none";
   }
 }
 

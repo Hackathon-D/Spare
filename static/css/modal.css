@@ -9,7 +9,8 @@
   background: rgba(0, 0, 0, 0.8);
   z-index: 99999;
   animation-name: show;
-  animation-duration: 0.5s
+  animation-duration: 0.5s;
+  cursor: default;
 }
 
 .modal-content {

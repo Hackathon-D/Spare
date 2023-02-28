@@ -28,9 +28,3 @@ close_draft.onclick = function() {
     modal_draft.style.display = 'none';
 };
 
-//modalの外をクリックしたら閉じる処理
-window.onclick = function(event) {
-    if(event.target == modal_draft) {
-        modal_draft.style.display = 'none';
-    }
-};

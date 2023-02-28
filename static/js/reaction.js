@@ -19,10 +19,3 @@ reactionAddBtns.forEach((btn) => {
 close_reaction.onclick = function() {
     modal_reaction.style.display = 'none';
 };
-
-//modalの外をクリックしたら閉じる処理
-window.onclick = function(event) {
-    if(event.target == modal_reaction) {
-        modal_reaction.style.display = 'none';
-    }
-};

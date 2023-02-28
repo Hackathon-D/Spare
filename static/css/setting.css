@@ -11,6 +11,7 @@
 }
 
 .user-edit {
+    width: 400px;
     color: white;
     font-weight: 500;
     font-size: 40px;
@@ -49,11 +50,16 @@
 }
 
 .icon_name {
+    color: white;
     width: 200px;
     text-align: center;
 }
 
-#change {
+.icon_name p{
+    color: white;
+}
+
+#change, #upload_image {
     border: 1px solid white;
     display: flex;
     justify-self: right;
@@ -73,4 +79,8 @@
     border-radius: 100px;
     width: 200px;
     height: 200px;
+}
+
+.backtohome {
+    color: white;
 }

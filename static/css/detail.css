@@ -19,14 +19,14 @@
   width: calc(100vw - 70px);
   position: fixed;
   top: 0;
-  color: var(--snow);
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 2rem;
   padding-left: 20px;
   z-index: 2;
-  box-shadow: 0px 10px 10px 0px var(--wood);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 #chatroom-name {
@@ -37,6 +37,11 @@
 #chatroom-description {
   color: white;
   font-size: small;
+}
+
+#channel-update {
+  color: white;
+  background-color: transparent;
 }
 
 /* メッセージエリア */
@@ -101,7 +106,6 @@
 
 .box-left {
   color: white;
-  border: 1px solid var(--dark_pink);
   background-color: #6B728E;
 }
 
@@ -156,7 +160,7 @@
 .typing-box-wrapper {
   position: fixed;
   bottom: 10px;
-  width: 90%;
+  width: 98%;
   height: 100px;
   background-color: rgba(211, 211, 211, 0.75);
   background-size: contain;
@@ -199,8 +203,8 @@
   line-height: 47px;
   padding: 0;
   margin: 0;
-  bottom: 20px;
-  right: 8px;
+  bottom: 25%;
+  right: 1%;
 }
 
 #save-message-btn {
@@ -211,8 +215,8 @@
   line-height: 47px;
   padding: 0;
   margin: 0;
-  bottom: 20px;
-  right: -50px;
+  bottom: 25%;
+  right: -3.5%;
 }
 
 .templete-open {
@@ -223,8 +227,24 @@
   line-height: 47px;
   padding: 0;
   margin: 0;
-  bottom: 25px;
-  right: 100px;
+  bottom: 29%;
+  right: 3.5%;
+}
+
+#open-modal-draft {
+  background-color: transparent;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  line-height: 47px;
+  padding: 0;
+  margin: 0;
+  bottom: 29%;
+  right: 0.3%;
+}
+
+#open-modal-draft ion-icon {
+  font-size: 1.3rem;
 }
 
 .templete-open ion-icon {
@@ -259,6 +279,18 @@
 @media screen and (max-width: 550px) {
   #chatroom-description {
     display: none;
+  }
+  #add-message-btn {
+    right: 20%;
+  }
+  #save-message-btn {
+    right: 10%;
+  }
+  .templete-open {
+    right: 10%;
+  }
+  #open-modal-draft {
+    right: 2%;
   }
 }
 
