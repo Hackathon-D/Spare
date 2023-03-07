@@ -1,4 +1,4 @@
-<button id="open-modal-draft" name="open-modal-btn-draft">下書き</button>
+<button id="open-modal-draft" name="open-modal-btn-draft" ><ion-icon name="pencil"></ion-icon></button>
 <div id="demo-modal-draft" class="modal-draft">
     <div class="modal-content-draft">
         <div class="modal-header-draft">
@@ -11,6 +11,12 @@
             <li>
             <button class="draft-msg" id="draft1" value={{ sitaga.message }}>{{ sitaga.message }}</button>
             </li>
+            <form action="/delete_sitagaki" method="POST">
+                <input type="hidden" value="{{ channel.id }}" name="channel_id"/>
+                <button class="sitagaki-delete" name="sitagaki_id" value="{{ sitaga.id }}">
+                    <ion-icon name="trash-bin-outline"></ion-icon>
+                </button>
+                </form>
                 {% endfor %}
             </ul>
         </div>

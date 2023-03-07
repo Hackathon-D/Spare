@@ -15,7 +15,7 @@
           <p id="chatroom-description">{{ channel.abstract }}</p>
         {% endif %}
         {% if uid == channel.uid %}
-          <button id='channel-update' class="basic-btn smaller-btn">編集</button>
+          <button id='channel-update'><ion-icon name="create-outline"></ion-icon>編集</button>
          {% include 'modal/update-channel.html' %}
         {% endif %}
       </div>
@@ -81,12 +81,12 @@
             {% endif %}
           {% endfor %}
         {% else %}
-          <div><p>まだメッセージがありません</p></div>
+          <div><p>{{ channel.name }}へようこそ。まだメッセージが投稿されていません。<br>メッセージを投稿してチャンネルを盛り上げましょう。</p></div>
         {% endif %}
       </div>
       <div class="typing-box-wrapper">
         <form class="typing-box" action="?" method="POST">
-          <textarea name="message" id="message" autofocus></textarea>
+          <textarea name="message" id="message" autofocus placeholder="メッセージを入力"></textarea>
           <!-- 送信ボタン, messageにデータを飛ばす -->
           <input type="hidden" name="channel_id" value="{{ channel.id }}" />
           <button type="submit" id="add-message-btn" formaction="/message">

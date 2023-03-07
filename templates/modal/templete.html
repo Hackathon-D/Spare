@@ -1,8 +1,8 @@
-<button class="templete-open" id="open-modal" name="open-modal-btn"><ion-icon name="reader"></ion-icon></button>
-<div id="demo-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <span class="close">×</span>
+<button class="templete-open" id="open-modal-templete" name="open-modal-btn-templete"><ion-icon name="reader"></ion-icon></button>
+<div id="demo-modal-templete" class="modal-templete">
+    <div class="modal-content-templete">
+        <div class="modal-header-templete">
+            <span class="close-templete">×</span>
             <h2>定型文</h2>
         </div>
         <div class="templete-list-wrapper">
@@ -20,7 +20,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <div class="modal-body">
+        <div class="modal-body-templete">
             <form action='/teikei' class='registerform' id="tourokuform" name="registerform" method="post">
                 <input class="tourokuinput" type="text" id="tourokuform" name="register" required>
                 <input type="hidden" name='cid' value='{{ channel.id }}'>

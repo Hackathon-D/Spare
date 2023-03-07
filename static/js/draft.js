@@ -8,8 +8,8 @@ const buttons_draft = document.querySelectorAll('#draft1');
 buttons_draft.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.value;
-        chatarea.value = value;
-        modal.style.display = 'none';
+        chatarea_draft.value = value;
+        modal_draft.style.display = 'none';
     });
 });
 

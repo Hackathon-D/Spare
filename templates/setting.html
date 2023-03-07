@@ -9,17 +9,14 @@
       <img class="profile_img" src=./static/img/{{ uname.user_name }}.jpg>
       <div class="icon_name">
           <p>{{ uname.user_name }}</p>
+          <p class="user-edit">ユーザー情報の編集</p>
           <div class="upload_image">
-            <h3>画像のアップロード</h3>
             <form method="post" enctype="multipart/form-data">
-            <input type="file" id="image_select" name="image" value="profile.jpg">
-            <input type="submit" id="upload_image" value="Upload">
+            <input type="file" id="image_select" name="image" accept=".png, .jpg, .jpeg">
+            <button type="submit" id="upload_image" value="Upload">アップロード</button>
             </form>
       </div>
-      <div class="user_profile">
-      </div>
       <div class="change_profile">
-          <p class="user-edit">ユーザー情報の編集</p>
           <div class="change_info_wrapper">
           <form id="change_username" action="/henkouN" method="post">
               <p>Username</p>
@@ -43,7 +40,7 @@
           </div>
       </div>
       </div>
-  <a href="{{ url_for('index') }}">Homeへ戻る</a>
+  <a class="backtohome" href="{{ url_for('index') }}">Homeへ戻る</a>
   </div>
 </div>
   <script
